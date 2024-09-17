@@ -1,0 +1,40 @@
+{
+  "name": "aa-userop",
+  "version": "0.0.1",
+  "description": "A library to build User Operations in a simple and easy way.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "homepage": "./dist/index.d.ts",
+  "repository": {
+    "url": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "tsup",
+    "yalc-publish": "yarn build && yalc push",
+    "dev": "npx tsc && nodemon src/index.ts"
+  },
+  "keywords": [
+    "Account Abstraction",
+    "ERC-4337",
+    "Ethereum",
+    "User Operation"
+  ],
+  "author": "@Lando (Francisco Landino)",
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "axios": "1.7.4",
+    "viem": "2.14.2",
+    "yarn": "1.22.22"
+  },
+  "include": [
+    "src/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
