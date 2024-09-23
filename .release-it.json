@@ -1,8 +1,8 @@
 {
   "npm": {
     "publish": true,
-    "tokenRef": "NPM_TOKEN",
-    "skipChecks": true
+    "skipChecks": true,
+    "access": "public"
   },
   "git": {
     "requireBranch": "master",
