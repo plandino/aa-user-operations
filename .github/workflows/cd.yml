@@ -21,6 +21,14 @@ jobs:
       - name: Build project
         run: yarn build
 
+      - name: print npm token (will be deleted)
+        run: echo ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish with plain npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Release with release-it
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
