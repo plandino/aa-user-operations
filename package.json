@@ -13,7 +13,8 @@
     "build": "tsup src/index.ts --format cjs,esm --dts --minify --sourcemap",
     "yalc-publish": "yarn build && yalc push",
     "dev": "npx tsc && nodemon src/index.ts",
-    "lint": "eslint 'src/**/*.ts'"
+    "lint": "eslint 'src/**/*.ts'",
+    "release": "release-it"
   },
   "keywords": [
     "Account Abstraction",

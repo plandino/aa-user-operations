@@ -1,0 +1,17 @@
+{
+  "npm": {
+    "publish": true,
+    "tokenRef": "NPM_TOKEN",
+    "skipChecks": true
+  },
+  "git": {
+    "requireBranch": "master",
+    "tagName": "v${version}",
+    "commitMessage": "Release v${version}",
+    "tagAnnotation": "Release v${version}"
+  },
+  "github": {
+    "release": true,
+    "token": "${GITHUB_TOKEN}"
+  }
+}
