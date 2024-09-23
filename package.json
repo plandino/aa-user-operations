@@ -1,6 +1,6 @@
 {
   "name": "@landas/aa-userop",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A library to build User Operations in a simple and easy way.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
