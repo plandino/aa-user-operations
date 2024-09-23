@@ -1,6 +1,7 @@
 name: CD
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ['CI']
     types:
@@ -21,16 +22,21 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: print npm token (will be deleted)
-        run: echo ${{ secrets.NPM_TOKEN }}
+      - name: Check secret usage
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "Secret is not set."
+          else
+            echo "Secret is set."
+          fi
 
-      - name: Publish with plain npm
-        run: npm publish
+      - name: Initialize NPM config
+        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release with release-it
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm run release --ci
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn release --ci
