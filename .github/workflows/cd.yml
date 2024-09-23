@@ -22,13 +22,10 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: Check secret usage
+      - name: Initialize Git user
         run: |
-          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
-            echo "Secret is not set."
-          else
-            echo "Secret is set."
-          fi
+          git config --global user.email "landinofrancisco@gmail.com"
+          git config --global user.name "Francisco Landino"
 
       - name: Initialize NPM config
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
