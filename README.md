@@ -3,9 +3,14 @@
 ## Usage
 
 ```typescript
-const FACTORY_ADDRESS = '0x...'; // Factory address
+// Import function
+import { sendUserOperation } from 'aa-userop';
+
+// Declare addresses
+const FACTORY_ADDRESS = '0x...';
 const TARGET_WALLET_ADDRESS = '0x...';
 
+// Define RPC_URL and account that will sign the User Operations
 const RPC_URL = 'https://api.pimlico.io/v2/...';
 const account = privateKeyToAccount('0x...');
 

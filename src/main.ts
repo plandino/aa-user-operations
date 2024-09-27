@@ -1,10 +1,7 @@
 import { Abi, Address, encodeFunctionData, Hex, PrivateKeyAccount } from 'viem';
 import { addGasFields } from './helpers/gas';
 import { signUserOp } from './helpers/signing';
-import {
-  eth_getUserOperationReceipt,
-  eth_sendUserOperation,
-} from './helpers/https';
+import { eth_getUserOperationReceipt, eth_sendUserOperation } from './helpers/https';
 import { nonce } from './helpers/nonce';
 import { senderAndFactoryData } from './helpers/factory';
 
@@ -33,7 +30,7 @@ export const sendUserOperation = async ({
   factoryAddress: Address;
   factoryAbi: Abi;
   accountAbi: Abi;
-  account: PrivateKeyAccount;
+  account?: PrivateKeyAccount;
   rpcUrl: string;
 }) => {
   const { sender, factory, factoryData } = await senderAndFactoryData({
@@ -79,19 +76,14 @@ export const sendUserOperation = async ({
   console.log('Got Signed User Operation: ', signedUserOperation, '\n');
 
   console.log('Sending User Operation');
-  const userOperationHash = await eth_sendUserOperation(
-    signedUserOperation,
-    rpcUrl
-  );
+  const userOperationHash = await eth_sendUserOperation(signedUserOperation, rpcUrl);
   console.log('User Operation Hash: ', userOperationHash);
 
   // Waits for 2 seconds
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   console.log('Getting User Operation Receipt');
-  const userOperationReceipt = await eth_getUserOperationReceipt(
-    userOperationHash.result,
-    rpcUrl
-  );
+  const userOperationReceipt = await eth_getUserOperationReceipt(userOperationHash.result, rpcUrl);
   console.log('Got Operation Receipt: ', userOperationReceipt);
+  return { userOperationReceipt, userOperationHash };
 };
